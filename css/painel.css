@@ -1,0 +1,64 @@
+.workspace {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: min(100% - 3rem, 1080px);
+    min-height: 100svh;
+    margin-inline: auto;
+}
+
+.workspace-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1.75rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.workspace-header .brand {
+    align-self: center;
+}
+
+.workspace-header button {
+    min-height: 44px;
+    padding: 0.5rem 1.5rem;
+}
+
+.workspace main {
+    flex: 1;
+}
+
+.workspace .panel-footer {
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--line);
+}
+
+.account h1,
+.account dd {
+    overflow-wrap: anywhere;
+}
+
+.account h2 {
+    margin-top: 3rem;
+    font-size: 1.125rem;
+}
+
+.account dl {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 600px;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--surface);
+}
+
+.account dt {
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+.account dd {
+    margin: 0.25rem 0 0;
+}

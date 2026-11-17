@@ -1,0 +1,15 @@
+{
+	admin off
+	persist_config off
+	auto_https off
+}
+
+:{$PORT:8081} {
+	header Cache-Control "no-store"
+	handle {
+		root * .
+		file_server {
+			hide .git .env* Caddyfile railway.json
+		}
+	}
+}

@@ -1,0 +1,5 @@
+- Autor: Antonio Cogo
+- Fonte: [Unsplash](https://unsplash.com/photos/a-lighthouse-on-top-of-a-cliff-near-the-ocean-AgIqtpWrIyg)
+- Licença: [Unsplash License](https://unsplash.com/license)
+- Arquivo: `coast.jpg`
+- Local: Farol do Cabo da Roca, Colares, Portugal.

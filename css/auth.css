@@ -1,0 +1,184 @@
+.login {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    max-width: 1920px;
+    min-height: 100svh;
+    margin-inline: auto;
+    padding: 1rem;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4rem;
+    min-width: 0;
+    padding: 2rem clamp(2rem, 5.5vw, 6rem);
+}
+
+.login-content {
+    width: 100%;
+    max-width: 390px;
+    margin-inline: auto;
+}
+
+form {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.field {
+    display: grid;
+    gap: 0.625rem;
+}
+
+label {
+    font-size: 0.9375rem;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    min-width: 0;
+    min-height: 54px;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+}
+
+input::placeholder {
+    color: var(--muted);
+    opacity: 1;
+}
+
+input:focus {
+    border-color: var(--primary);
+}
+
+.field small,
+.auth-link {
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+.auth-link {
+    margin: 1.5rem 0 0;
+    text-align: center;
+}
+
+.auth-link a {
+    color: var(--primary);
+}
+
+.form-message {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--primary);
+    background: var(--surface);
+    font-size: 0.9375rem;
+}
+
+.photo-panel {
+    position: relative;
+    min-width: 0;
+    min-height: 620px;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--surface);
+    isolation: isolate;
+}
+
+.photo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 60% center;
+}
+
+.photo-panel::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, var(--photo-shade), transparent 65%);
+    content: '';
+}
+
+.photo-copy {
+    padding: clamp(2rem, 4vw, 4.5rem);
+}
+
+.photo-copy p {
+    margin: 0;
+    font-family: var(--heading-font);
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+.photo-credit {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    max-width: calc(100% - 2rem);
+    padding: 0.45rem 0.75rem;
+    border-radius: 4px;
+    background: var(--credit-shade);
+    font-size: 0.6875rem;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+    .login {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    }
+
+    .panel {
+        gap: 3rem;
+        padding: 1.5rem 2rem 1.5rem 1rem;
+    }
+
+    .photo-copy {
+        padding: 2rem 1.5rem;
+    }
+
+    .photo-copy p {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .login {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 0;
+    }
+
+    .panel {
+        min-height: 100svh;
+        gap: 3rem;
+        padding: 2rem 1.5rem 1rem;
+    }
+
+    .photo-panel {
+        min-height: 280px;
+        margin: 0 1rem 1rem;
+    }
+
+    .photo {
+        object-position: 60% 62%;
+    }
+
+    .photo-copy {
+        padding: 1.5rem;
+    }
+
+    .photo-copy p {
+        font-size: 1.875rem;
+    }
+}

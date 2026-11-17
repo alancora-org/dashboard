@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Entrar | ÂNCORA</title>
+        <meta
+            name="description"
+            content="Acesse sua conta no ÂNCORA e tenha seus planos de preparação por perto."
+        />
+        <meta name="theme-color" content="#10263b" />
+
+        <link rel="stylesheet" href="css/global.css" />
+        <link rel="stylesheet" href="css/auth.css" />
+
+        <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+
+        <script src="js/auth.js" defer></script>
+    </head>
+    <body>
+        <main class="login">
+            <section class="panel" aria-labelledby="login-title">
+                <a class="brand" href="https://alancora.org" aria-label="ÂNCORA - voltar ao site">
+                    <img src="assets/logo.svg" alt="" width="32" height="32" />
+                    <span>ÂNCORA</span>
+                </a>
+
+                <div class="login-content">
+                    <h1 id="login-title">Bom ter você<br />por aqui.</h1>
+                    <p class="intro">Entre na sua conta para acessar seus planos.</p>
+
+                    <form
+                        id="auth-form"
+                        action="https://api.alancora.org/api/auth/login"
+                        method="post"
+                        aria-labelledby="login-title"
+                    >
+                        <div class="field">
+                            <label for="email">E-mail</label>
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                placeholder="seu@email.com"
+                                autocomplete="username"
+                                autocapitalize="none"
+                                spellcheck="false"
+                                maxlength="254"
+                                required
+                            />
+                        </div>
+
+                        <div class="field">
+                            <label for="password">Senha</label>
+                            <input
+                                id="password"
+                                name="password"
+                                type="password"
+                                placeholder="Sua senha"
+                                autocomplete="current-password"
+                                maxlength="128"
+                                required
+                            />
+                        </div>
+
+                        <button type="submit">Entrar</button>
+                        <p
+                            id="form-message"
+                            class="form-message"
+                            role="status"
+                            aria-live="polite"
+                            tabindex="-1"
+                            hidden
+                        ></p>
+                    </form>
+
+                    <p class="auth-link">
+                        Ainda não tem conta? <a href="cadastro.html">Criar conta</a>
+                    </p>
+
+                    <noscript><p>Ative o JavaScript para entrar na sua conta.</p></noscript>
+                </div>
+
+                <footer class="panel-footer">
+                    <a href="https://alancora.org">Voltar ao site</a>
+                    <a href="mailto:contato@alancora.org">Precisa de ajuda? contato@alancora.org</a>
+                </footer>
+            </section>
+
+            <figure class="photo-panel">
+                <img
+                    class="photo"
+                    src="assets/coast/coast.jpg"
+                    alt="Farol no alto de uma falésia junto ao mar, no Cabo da Roca, em Portugal."
+                    width="1600"
+                    height="2133"
+                    fetchpriority="high"
+                />
+
+                <div class="photo-copy">
+                    <p>Sua segurança começa<br />antes da emergência.</p>
+                </div>
+
+                <figcaption class="photo-credit">
+                    Foto de
+                    <a
+                        href="https://unsplash.com/photos/a-lighthouse-on-top-of-a-cliff-near-the-ocean-AgIqtpWrIyg"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Antonio Cogo / Unsplash
+                    </a>
+                </figcaption>
+            </figure>
+        </main>
+    </body>
+</html>

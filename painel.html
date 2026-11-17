@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Minha conta | ÂNCORA</title>
+        <meta name="theme-color" content="#10263b" />
+
+        <link rel="stylesheet" href="css/global.css" />
+        <link rel="stylesheet" href="css/painel.css" />
+
+        <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+
+        <script src="js/painel.js" defer></script>
+    </head>
+    <body>
+        <div class="workspace">
+            <header class="workspace-header">
+                <a class="brand" href="painel.html" aria-label="ÂNCORA - início">
+                    <img src="assets/logo.svg" alt="" width="32" height="32" />
+                    <span>ÂNCORA</span>
+                </a>
+
+                <button id="logout" type="button" hidden>Sair</button>
+            </header>
+
+            <main>
+                <p id="account-message" role="status" aria-live="polite">Carregando sua conta...</p>
+
+                <button id="retry" type="button" hidden>Tentar novamente</button>
+
+                <section id="account" class="account" aria-labelledby="welcome" hidden>
+                    <h1 id="welcome">Bem-vindo ao ÂNCORA.</h1>
+                    <p class="intro">Confira os dados da sua conta.</p>
+
+                    <h2>Minha conta</h2>
+                    <dl>
+                        <div><dt>Nome</dt><dd id="account-name"></dd></div>
+                        <div><dt>E-mail</dt><dd id="account-email"></dd></div>
+                    </dl>
+                </section>
+
+                <noscript><p>Ative o JavaScript para consultar sua conta.</p></noscript>
+            </main>
+
+            <footer class="panel-footer">
+                <a href="https://alancora.org">Conheça o projeto</a>
+                <a href="mailto:contato@alancora.org">Precisa de ajuda?</a>
+            </footer>
+        </div>
+    </body>
+</html>
