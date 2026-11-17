@@ -39,6 +39,49 @@
                         <div><dt>Nome</dt><dd id="account-name"></dd></div>
                         <div><dt>E-mail</dt><dd id="account-email"></dd></div>
                     </dl>
+
+                    <h2 id="details-title">Moradia e localização</h2>
+                    <form
+                        id="details-form"
+                        action="https://api.alancora.org/api/auth/details"
+                        method="post"
+                        aria-labelledby="details-title"
+                    >
+                        <label for="housing">
+                            Moradia
+                            <input
+                                id="housing"
+                                name="housing"
+                                type="text"
+                                placeholder="Ex.: casa térrea, apartamento no 2º andar"
+                                maxlength="120"
+                            />
+                        </label>
+
+                        <label for="location">
+                            Localização aproximada
+                            <input
+                                id="location"
+                                name="location"
+                                type="text"
+                                placeholder="Ex.: Centro, Santos - SP"
+                                maxlength="120"
+                                aria-describedby="location-hint"
+                            />
+                            <small id="location-hint">
+                                Informe apenas bairro, cidade e estado, sem endereço completo.
+                            </small>
+                        </label>
+
+                        <button type="submit">Salvar detalhes</button>
+                        <p
+                            id="details-message"
+                            role="status"
+                            aria-live="polite"
+                            tabindex="-1"
+                            hidden
+                        ></p>
+                    </form>
                 </section>
 
                 <noscript><p>Ative o JavaScript para consultar sua conta.</p></noscript>
