@@ -74,7 +74,7 @@
     gap: 0.5rem;
 }
 
-.account input {
+.account input[type='text'] {
     width: 100%;
     min-width: 0;
     min-height: 54px;
@@ -87,10 +87,53 @@
 }
 
 .account input::placeholder,
+.account .form-hint,
 .account small {
     color: var(--muted);
 }
 
 .account form p {
     margin: 0;
+}
+
+.account fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+}
+
+.account legend {
+    padding-inline: 0.5rem;
+    font-weight: 600;
+}
+
+.account .choices {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.account .choice {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 44px;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.account .choice:hover,
+.account .choice:has(input:checked) {
+    background: var(--surface);
+}
+
+.account input[type='checkbox'] {
+    flex: 0 0 auto;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: 0;
+    accent-color: var(--primary);
 }

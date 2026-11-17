@@ -46,7 +46,7 @@
                         id="details-form"
                         action="/api/auth/details"
                         method="post"
-                        aria-labelledby="details-title"
+                        aria-labelledby="details-title needs-title"
                     >
                         <label for="housing">
                             Moradia
@@ -73,6 +73,12 @@
                                 Informe apenas bairro, cidade e estado, sem endereço completo.
                             </small>
                         </label>
+
+                        <fieldset aria-describedby="choices-hint">
+                            <legend id="needs-title">Necessidades de assistência</legend>
+                            <input type="hidden" name="needs" value="" />
+                            <div id="needs" class="choices"></div>
+                        </fieldset>
 
                         <button type="submit">Salvar detalhes</button>
                         <p

@@ -7,6 +7,39 @@ const save = form.querySelector('button');
 const detailsMessage = document.querySelector('#details-message');
 const housing = form.elements.namedItem('housing');
 const region = form.elements.namedItem('location');
+const needs = document.querySelector('#needs');
+
+function showOptions(options) {
+    needs.replaceChildren();
+
+    for (const option of options) {
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        const text = document.createElement('span');
+
+        label.className = 'choice';
+        input.type = 'checkbox';
+        input.name = 'needs';
+        input.value = option.code;
+        text.textContent = option.name;
+
+        label.append(input, text);
+        needs.append(label);
+    }
+
+    if (!needs.childElementCount) {
+        needs.textContent = 'Nenhuma opção disponível.';
+    }
+}
+
+function showDetails(user) {
+    housing.value = user.housing || '';
+    region.value = user.location || '';
+
+    for (const input of form.querySelectorAll('input[type="checkbox"]')) {
+        input.checked = (user.needs || []).includes(input.value);
+    }
+}
 
 async function loadAccount() {
     account.hidden = true;
@@ -36,8 +69,9 @@ async function loadAccount() {
         document.querySelector('#welcome').textContent = `Olá, ${user.name}.`;
         document.querySelector('#account-name').textContent = user.name;
         document.querySelector('#account-email').textContent = user.email;
-        housing.value = user.housing || '';
-        region.value = user.location || '';
+
+        showOptions(user.options);
+        showDetails(user);
 
         message.hidden = true;
         detailsMessage.hidden = true;
@@ -61,10 +95,12 @@ form.addEventListener('submit', async (event) => {
     }
 
     const body = new URLSearchParams(new FormData(form));
+    const fields = form.querySelectorAll('input');
 
     save.disabled = true;
-    housing.disabled = true;
-    region.disabled = true;
+    for (const field of fields) {
+        field.disabled = true;
+    }
     save.textContent = 'Salvando...';
     detailsMessage.hidden = true;
 
@@ -86,8 +122,8 @@ form.addEventListener('submit', async (event) => {
             throw new Error(user.error || 'Não foi possível salvar os detalhes.');
         }
 
-        housing.value = user.housing;
-        region.value = user.location;
+        showDetails(user);
+
         detailsMessage.textContent = 'Detalhes salvos.';
     } catch (error) {
         detailsMessage.textContent =
@@ -96,8 +132,9 @@ form.addEventListener('submit', async (event) => {
                 : error.message;
     } finally {
         save.disabled = false;
-        housing.disabled = false;
-        region.disabled = false;
+        for (const field of fields) {
+            field.disabled = false;
+        }
         save.textContent = 'Salvar detalhes';
         detailsMessage.hidden = false;
         detailsMessage.focus();
