@@ -6,6 +6,13 @@
 
 :{$PORT:8081} {
 	header Cache-Control "no-store"
+	handle /js/config.js {
+		header Content-Type text/javascript
+		templates {
+			mime text/javascript
+		}
+		respond `const API_URL = {{ env "API_URL" | default "http://localhost:8080" | toJson }};`
+	}
 	handle {
 		root * .
 		file_server {

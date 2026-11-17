@@ -17,7 +17,7 @@ async function loadAccount() {
     message.hidden = false;
 
     try {
-        const response = await fetch('https://api.alancora.org/api/auth/me', {
+        const response = await fetch(new URL('/api/auth/me', API_URL), {
             credentials: 'include',
             cache: 'no-store',
         });
@@ -69,7 +69,7 @@ form.addEventListener('submit', async (event) => {
     detailsMessage.hidden = true;
 
     try {
-        const response = await fetch(form.getAttribute('action'), {
+        const response = await fetch(new URL(form.getAttribute('action'), API_URL), {
             method: 'POST',
             credentials: 'include',
             body,
@@ -108,7 +108,7 @@ logout.addEventListener('click', async () => {
     logout.disabled = true;
 
     try {
-        const response = await fetch('https://api.alancora.org/api/auth/logout', {
+        const response = await fetch(new URL('/api/auth/logout', API_URL), {
             method: 'POST',
             credentials: 'include',
         });

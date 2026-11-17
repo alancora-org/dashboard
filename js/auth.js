@@ -32,7 +32,7 @@ form.addEventListener('submit', async (event) => {
     message.hidden = true;
 
     try {
-        const response = await fetch(form.getAttribute('action'), {
+        const response = await fetch(new URL(form.getAttribute('action'), API_URL), {
             method: 'POST',
             credentials: 'include',
             body: new URLSearchParams(new FormData(form)),
@@ -58,7 +58,7 @@ form.addEventListener('submit', async (event) => {
     }
 });
 
-fetch('https://api.alancora.org/api/auth/me', { credentials: 'include', cache: 'no-store' }).then((response) => {
+fetch(new URL('/api/auth/me', API_URL), { credentials: 'include', cache: 'no-store' }).then((response) => {
     if (response.ok) {
         window.location.replace('painel.html');
     }
