@@ -16,6 +16,8 @@
         <script src="js/painel.js" defer></script>
     </head>
     <body>
+        <a class="skip-link" href="#main">Ir para o conteúdo</a>
+
         <div class="workspace">
             <header class="workspace-header">
                 <a class="brand" href="painel.html" aria-label="ÂNCORA - início">
@@ -23,72 +25,157 @@
                     <span>ÂNCORA</span>
                 </a>
 
-                <button id="logout" type="button" hidden>Sair</button>
+                <div class="header-actions">
+                    <a href="mailto:contato@alancora.org">Precisa de ajuda?</a>
+                    <button id="logout" type="button" hidden>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 5H5v14h4M13 8l4 4-4 4M8 12h12" />
+                        </svg>
+                        Sair
+                    </button>
+                </div>
             </header>
 
-            <main>
-                <p id="account-message" role="status" aria-live="polite">Carregando sua conta...</p>
+            <main id="main" tabindex="-1">
+                <p id="account-message" class="notice" role="status" aria-live="polite">
+                    Carregando sua conta...
+                </p>
 
                 <button id="retry" type="button" hidden>Tentar novamente</button>
 
                 <section id="account" class="account" aria-labelledby="welcome" hidden>
-                    <h1 id="welcome">Bem-vindo ao ÂNCORA.</h1>
-                    <p class="intro">Confira os dados da sua conta.</p>
+                    <header class="welcome">
+                        <h1 id="welcome">Bem-vindo ao ÂNCORA.</h1>
+                        <p class="intro">
+                            Mantenha sua moradia, localização e necessidades de assistência
+                            atualizadas.
+                        </p>
+                    </header>
 
-                    <h2>Minha conta</h2>
-                    <dl>
-                        <div><dt>Nome</dt><dd id="account-name"></dd></div>
-                        <div><dt>E-mail</dt><dd id="account-email"></dd></div>
-                    </dl>
+                    <div class="account-layout">
+                        <aside class="profile" aria-labelledby="account-title">
+                            <section class="profile-card">
+                                <div class="section-heading">
+                                    <span class="section-icon">
+                                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <circle cx="12" cy="8" r="3" />
+                                            <path d="M5 20v-2a7 7 0 0 1 14 0v2" />
+                                        </svg>
+                                    </span>
+                                    <h2 id="account-title">Minha conta</h2>
+                                </div>
+                                <dl>
+                                    <div><dt>Nome</dt><dd id="account-name"></dd></div>
+                                    <div><dt>E-mail</dt><dd id="account-email"></dd></div>
+                                </dl>
+                            </section>
 
-                    <h2 id="details-title">Moradia e localização</h2>
-                    <form
-                        id="details-form"
-                        action="/api/auth/details"
-                        method="post"
-                        aria-labelledby="details-title needs-title"
-                    >
-                        <label for="housing">
-                            Moradia
-                            <input
-                                id="housing"
-                                name="housing"
-                                type="text"
-                                placeholder="Ex.: casa térrea, apartamento no 2º andar"
-                                maxlength="120"
-                            />
-                        </label>
+                            <figure class="coast-card">
+                                <img
+                                    src="assets/coast/coast.jpg"
+                                    alt="Farol no alto de uma falésia junto ao mar."
+                                    width="1600"
+                                    height="2133"
+                                />
+                                <figcaption>
+                                    <p>Sua segurança começa antes da emergência.</p>
+                                    <a
+                                        class="photo-credit"
+                                        href="https://unsplash.com/photos/a-lighthouse-on-top-of-a-cliff-near-the-ocean-AgIqtpWrIyg"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Foto: Antonio Cogo / Unsplash
+                                    </a>
+                                </figcaption>
+                            </figure>
+                        </aside>
 
-                        <label for="location">
-                            Localização aproximada
-                            <input
-                                id="location"
-                                name="location"
-                                type="text"
-                                placeholder="Ex.: Centro, Santos - SP"
-                                maxlength="120"
-                                aria-describedby="location-hint"
-                            />
-                            <small id="location-hint">
-                                Informe apenas bairro, cidade e estado, sem endereço completo.
-                            </small>
-                        </label>
+                        <form
+                            id="details-form"
+                            class="details-card"
+                            action="/api/auth/details"
+                            method="post"
+                            aria-labelledby="details-title needs-title"
+                        >
+                            <section class="housing-section" aria-labelledby="details-title">
+                                <div class="section-heading">
+                                    <span class="section-icon">
+                                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8" />
+                                        </svg>
+                                    </span>
+                                    <div>
+                                        <h2 id="details-title">Moradia e localização</h2>
+                                        <p>Conte um pouco sobre onde você mora.</p>
+                                    </div>
+                                </div>
 
-                        <fieldset aria-describedby="choices-hint">
-                            <legend id="needs-title">Necessidades de assistência</legend>
-                            <input type="hidden" name="needs" value="" />
-                            <div id="needs" class="choices"></div>
-                        </fieldset>
+                                <div class="fields">
+                                    <label for="housing">
+                                        Moradia
+                                        <input
+                                            id="housing"
+                                            name="housing"
+                                            type="text"
+                                            placeholder="Ex.: apartamento no 2º andar"
+                                            maxlength="120"
+                                        />
+                                    </label>
 
-                        <button type="submit">Salvar detalhes</button>
-                        <p
-                            id="details-message"
-                            role="status"
-                            aria-live="polite"
-                            tabindex="-1"
-                            hidden
-                        ></p>
-                    </form>
+                                    <label for="location">
+                                        Localização aproximada
+                                        <input
+                                            id="location"
+                                            name="location"
+                                            type="text"
+                                            placeholder="Ex.: Centro, Santos - SP"
+                                            maxlength="120"
+                                            aria-describedby="location-hint"
+                                        />
+                                        <small id="location-hint">
+                                            Só precisamos do bairro, cidade e estado. Não inclua seu
+                                            endereço completo.
+                                        </small>
+                                    </label>
+                                </div>
+                            </section>
+
+                            <fieldset class="needs-section" aria-describedby="choices-hint">
+                                <legend id="needs-title">
+                                    <span class="section-icon">
+                                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path
+                                                d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"
+                                            />
+                                        </svg>
+                                    </span>
+                                    Necessidades de assistência
+                                </legend>
+                                <p id="choices-hint">
+                                    Selecione o que faz parte da sua rotina. Você pode marcar mais
+                                    de uma opção.
+                                </p>
+                                <input type="hidden" name="needs" value="" />
+                                <div id="needs" class="choices"></div>
+                            </fieldset>
+
+                            <div class="form-footer">
+                                <div class="form-actions">
+                                    <p>Você pode atualizar estes detalhes quando precisar.</p>
+                                    <button type="submit">Salvar detalhes</button>
+                                </div>
+                                <p
+                                    id="details-message"
+                                    class="notice"
+                                    role="status"
+                                    aria-live="polite"
+                                    tabindex="-1"
+                                    hidden
+                                ></p>
+                            </div>
+                        </form>
+                    </div>
                 </section>
 
                 <noscript><p>Ative o JavaScript para consultar sua conta.</p></noscript>
@@ -96,7 +183,7 @@
 
             <footer class="panel-footer">
                 <a href="https://alancora.org">Conheça o projeto</a>
-                <a href="mailto:contato@alancora.org">Precisa de ajuda?</a>
+                <a href="mailto:contato@alancora.org">Precisa de ajuda? contato@alancora.org</a>
             </footer>
         </div>
     </body>

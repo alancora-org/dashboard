@@ -1,139 +1,544 @@
+body {
+    --panel: #163147;
+    --panel-line: #355269;
+    --field-line: #6a8295;
+    color-scheme: dark;
+}
+
 .workspace {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    width: min(100% - 3rem, 1080px);
+    width: min(100% - 5rem, 1160px);
     min-height: 100svh;
     margin-inline: auto;
 }
 
-.workspace-header {
+.skip-link {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    background: var(--primary);
+    color: var(--background);
+    transform: translateY(calc(-100% - 2rem));
+}
+
+.skip-link:focus {
+    color: var(--background);
+    transform: translateY(0);
+}
+
+.workspace-header,
+.header-actions,
+.section-heading,
+.form-actions {
     display: flex;
     align-items: center;
+}
+
+.workspace-header {
     justify-content: space-between;
     gap: 1rem;
-    padding-block: 1.75rem;
-    border-bottom: 1px solid var(--line);
+    min-height: 104px;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--panel-line);
 }
 
 .workspace-header .brand {
     align-self: center;
 }
 
+.header-actions {
+    gap: 2rem;
+    font-size: 0.875rem;
+}
+
+.header-actions a {
+    padding-block: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.header-actions a:hover {
+    color: var(--primary);
+}
+
+.workspace button {
+    margin: 0;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transition: background-color 150ms, border-color 150ms;
+}
+
+.workspace button:hover:not(:disabled) {
+    background: #ffca88;
+}
+
 .workspace-header button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
     min-height: 44px;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1rem;
+    border-color: var(--panel-line);
+    background: transparent;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.workspace-header button:hover:not(:disabled) {
+    border-color: var(--muted);
+    background: var(--surface);
+}
+
+.icon {
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .workspace main {
     flex: 1;
+    min-width: 0;
+    padding-block: 3rem 4rem;
 }
 
-.workspace .panel-footer {
-    padding-block: 1.5rem;
-    border-top: 1px solid var(--line);
+.welcome {
+    margin-bottom: 2.5rem;
 }
 
-.account h1,
-.account dd {
+.welcome h1 {
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
     overflow-wrap: anywhere;
 }
 
-.account h2 {
-    margin-top: 3rem;
+.welcome .intro {
+    max-width: 65ch;
+    margin: 1rem 0 0;
+}
+
+.account-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr);
+    align-items: start;
+    gap: 1.75rem;
+}
+
+.profile {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.profile-card,
+.details-card {
+    min-width: 0;
+    border: 1px solid var(--panel-line);
+    border-radius: 16px;
+    background: var(--panel);
+}
+
+.profile-card {
+    padding: 1.75rem;
+}
+
+.section-heading {
+    gap: 0.875rem;
+}
+
+.section-icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgb(243 180 106 / 22%);
+    border-radius: 12px;
+    background: rgb(243 180 106 / 7%);
+    color: var(--primary);
+}
+
+.account h2,
+.account legend {
+    margin: 0;
     font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.4;
 }
 
-.account dl {
-    display: grid;
-    gap: 1.5rem;
-    max-width: 600px;
-    padding: 1.5rem;
-    border: 1px solid var(--line);
-    border-radius: 5px;
-    background: var(--surface);
-}
-
-.account dt {
+.section-heading p,
+.needs-section > p {
+    margin: 0.375rem 0 0;
     color: var(--muted);
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
 }
 
-.account dd {
-    margin: 0.25rem 0 0;
-}
-
-.account form {
+.profile dl {
     display: grid;
-    gap: 1.5rem;
-    max-width: 600px;
+    gap: 1.25rem;
+    margin: 1.75rem 0 0;
 }
 
-.account label {
+.profile dl > div + div {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--panel-line);
+}
+
+.profile dt {
+    color: var(--muted);
+    font-size: 0.8125rem;
+}
+
+.profile dd {
+    margin: 0.375rem 0 0;
+    overflow-wrap: anywhere;
+}
+
+.coast-card {
+    position: relative;
+    min-height: 318px;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--surface);
+    isolation: isolate;
+}
+
+.coast-card img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 64%;
+}
+
+.coast-card::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgb(16 38 59 / 8%) 20%, rgb(16 38 59 / 96%) 100%);
+    content: '';
+}
+
+.coast-card figcaption {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 1.25rem;
+    min-height: inherit;
+    padding: 1.75rem;
+}
+
+.coast-card p {
+    max-width: 15ch;
+    margin: 0;
+    font-family: var(--heading-font);
+    font-size: 1.75rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+}
+
+.photo-credit {
+    align-self: start;
+    color: var(--muted);
+    font-size: 0.6875rem;
+}
+
+.housing-section,
+.needs-section,
+.form-footer {
+    padding: 2rem;
+}
+
+.fields {
     display: grid;
-    gap: 0.5rem;
+    gap: 1.25rem;
+    margin-top: 1.75rem;
 }
 
-.account input[type='text'] {
+.fields label {
+    display: grid;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+}
+
+.fields input {
     width: 100%;
     min-width: 0;
     min-height: 54px;
     padding: 0.85rem 1rem;
-    border: 1px solid var(--line);
-    border-radius: 5px;
-    background: var(--surface);
+    border: 1px solid var(--field-line);
+    border-radius: 8px;
+    background: var(--background);
     color: var(--text);
     font: inherit;
+    font-size: 1rem;
+    transition: border-color 150ms;
 }
 
-.account input::placeholder,
-.account .form-hint,
-.account small {
+.fields input::placeholder {
     color: var(--muted);
+    opacity: 1;
 }
 
-.account form p {
-    margin: 0;
+.fields input:hover:not(:disabled) {
+    border-color: var(--muted);
 }
 
-.account fieldset {
+.fields input:focus {
+    border-color: var(--primary);
+}
+
+.fields small {
+    color: var(--muted);
+    font-size: 0.8125rem;
+    font-weight: 400;
+}
+
+.needs-section {
     min-width: 0;
     margin: 0;
-    padding: 1rem;
-    border: 1px solid var(--line);
-    border-radius: 5px;
+    border: 0;
+    border-top: 1px solid var(--panel-line);
 }
 
-.account legend {
-    padding-inline: 0.5rem;
-    font-weight: 600;
+.needs-section legend {
+    display: flex;
+    float: left;
+    align-items: center;
+    gap: 0.875rem;
+    width: 100%;
+    margin-bottom: 0.75rem;
+    padding: 0;
 }
 
-.account .choices {
+.needs-section > p {
+    clear: both;
+    margin: 0;
+}
+
+.choices {
     display: grid;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.25rem;
 }
 
-.account .choice {
+.choice {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    min-height: 44px;
-    padding: 0.5rem;
-    border-radius: 5px;
+    min-height: 62px;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--field-line);
+    border-radius: 8px;
+    background: var(--background);
+    font-size: 0.875rem;
+    line-height: 1.5;
     cursor: pointer;
+    transition: border-color 150ms, background-color 150ms;
 }
 
-.account .choice:hover,
-.account .choice:has(input:checked) {
-    background: var(--surface);
+.choice span {
+    overflow-wrap: anywhere;
 }
 
-.account input[type='checkbox'] {
+.choice:hover {
+    border-color: var(--muted);
+}
+
+.choice:has(input:checked) {
+    border-color: var(--primary);
+    background: rgb(243 180 106 / 8%);
+}
+
+.choice:has(input:focus-visible) {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+}
+
+.choice input {
     flex: 0 0 auto;
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.125rem;
+    height: 1.125rem;
     margin: 0;
     accent-color: var(--primary);
+}
+
+.account input:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.form-footer {
+    border-top: 1px solid var(--panel-line);
+}
+
+.form-actions {
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.form-actions p {
+    max-width: 29ch;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.8125rem;
+}
+
+.form-actions button {
+    flex-shrink: 0;
+    min-width: 164px;
+    padding-inline: 1.5rem;
+}
+
+.notice {
+    margin: 0 0 1.25rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--panel-line);
+    border-left: 3px solid var(--primary);
+    border-radius: 6px;
+    background: var(--surface);
+    overflow-wrap: anywhere;
+}
+
+.form-footer .notice {
+    margin: 1.25rem 0 0;
+    font-size: 0.9375rem;
+}
+
+.workspace .panel-footer {
+    width: 100%;
+    max-width: none;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--panel-line);
+}
+
+@media (max-width: 1000px) {
+    .workspace {
+        width: calc(100% - 3rem);
+    }
+
+    .account-layout {
+        gap: 1.25rem;
+    }
+
+    .profile-card,
+    .housing-section,
+    .needs-section,
+    .form-footer {
+        padding: 1.5rem;
+    }
+
+    .choices {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (min-width: 1180px) {
+    .fields {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+}
+
+@media (max-width: 900px) {
+    .account-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.5rem;
+    }
+
+    .profile {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        gap: 1rem;
+    }
+
+    .coast-card {
+        min-height: 100%;
+    }
+
+    .coast-card figcaption {
+        height: 100%;
+        padding: 1.5rem;
+    }
+
+    .coast-card p {
+        font-size: 1.5rem;
+    }
+
+    .choices {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 540px) {
+    .workspace {
+        width: calc(100% - 2rem);
+    }
+
+    .workspace-header {
+        min-height: 88px;
+        padding-block: 1.25rem;
+    }
+
+    .header-actions > a {
+        display: none;
+    }
+
+    .workspace main {
+        padding-block: 2rem;
+    }
+
+    .welcome {
+        margin-bottom: 1.75rem;
+    }
+
+    .profile {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .coast-card {
+        display: none;
+    }
+
+    .profile-card,
+    .housing-section,
+    .needs-section,
+    .form-footer {
+        padding: 1.25rem;
+    }
+
+    .choices {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .form-actions p {
+        max-width: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .workspace button,
+    .fields input,
+    .choice {
+        transition: none;
+    }
 }
