@@ -267,6 +267,10 @@ body {
     overflow-wrap: anywhere;
 }
 
+.account-page .button-danger {
+    margin-top: 1.75rem;
+}
+
 .coast-card {
     position: relative;
     min-height: 318px;
