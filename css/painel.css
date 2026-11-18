@@ -138,7 +138,8 @@ body {
 }
 
 .profile-card,
-.details-card {
+.details-card,
+.plan-card {
     min-width: 0;
     border: 1px solid var(--panel-line);
     border-radius: 16px;
@@ -274,7 +275,12 @@ body {
     font-weight: 500;
 }
 
-.fields input {
+.housing-notes {
+    grid-column: 1 / -1;
+}
+
+.fields input,
+.fields select {
     width: 100%;
     min-width: 0;
     min-height: 54px;
@@ -293,11 +299,13 @@ body {
     opacity: 1;
 }
 
-.fields input:hover:not(:disabled) {
+.fields input:hover:not(:disabled),
+.fields select:hover:not(:disabled) {
     border-color: var(--muted);
 }
 
-.fields input:focus {
+.fields input:focus,
+.fields select:focus {
     border-color: var(--primary);
 }
 
@@ -377,7 +385,8 @@ body {
     accent-color: var(--primary);
 }
 
-.account input:disabled {
+.account input:disabled,
+.account select:disabled {
     cursor: wait;
     opacity: 0.65;
 }
@@ -419,6 +428,84 @@ body {
     font-size: 0.9375rem;
 }
 
+.plan-card {
+    margin-top: 1.75rem;
+    padding: 2rem;
+}
+
+.plan-card .plan-fields {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+}
+
+.plan-card .plan-history {
+    grid-template-columns: minmax(0, 1fr);
+    margin-bottom: 1.25rem;
+}
+
+.plan-fields button {
+    min-height: 54px;
+    padding-inline: 1.5rem;
+}
+
+.plan-hint {
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+#plan-result {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--panel-line);
+}
+
+#plan-result h3 {
+    margin: 0;
+}
+
+.plan-card summary {
+    padding-block: 0.5rem;
+    cursor: pointer;
+}
+
+.plan-inputs dl {
+    display: grid;
+    gap: 1rem;
+}
+
+.plan-inputs dt {
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+.plan-inputs dd {
+    margin: 0.25rem 0 0;
+    overflow-wrap: anywhere;
+}
+
+.orientations {
+    margin-bottom: 0;
+    padding-left: 1.5rem;
+}
+
+.orientations li {
+    padding: 0.75rem 0 0.75rem 0.5rem;
+    overflow-wrap: anywhere;
+}
+
+.orientations li + li {
+    border-top: 1px solid var(--panel-line);
+}
+
+.orientations p {
+    margin: 0.5rem 0;
+}
+
+.orientations a {
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
 .workspace .panel-footer {
     width: 100%;
     max-width: none;
@@ -436,6 +523,7 @@ body {
     }
 
     .profile-card,
+    .plan-card,
     .housing-section,
     .needs-section,
     .form-footer {
@@ -514,6 +602,7 @@ body {
     }
 
     .profile-card,
+    .plan-card,
     .housing-section,
     .needs-section,
     .form-footer {
@@ -533,11 +622,16 @@ body {
     .form-actions p {
         max-width: none;
     }
+
+    .plan-card .plan-fields {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .workspace button,
     .fields input,
+    .fields select,
     .choice {
         transition: none;
     }

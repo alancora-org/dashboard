@@ -112,15 +112,16 @@
                                 </div>
 
                                 <div class="fields">
-                                    <label for="housing">
-                                        Moradia
-                                        <input
-                                            id="housing"
-                                            name="housing"
-                                            type="text"
-                                            placeholder="Ex.: apartamento no 2º andar"
-                                            maxlength="120"
-                                        />
+                                    <label for="housing-type">
+                                        Tipo de moradia
+                                        <select
+                                            id="housing-type"
+                                            name="housingType"
+                                            required
+                                            disabled
+                                        >
+                                            <option value="">Selecione seu tipo de moradia</option>
+                                        </select>
                                     </label>
 
                                     <label for="location">
@@ -137,6 +138,17 @@
                                             Só precisamos do bairro, cidade e estado. Não inclua seu
                                             endereço completo.
                                         </small>
+                                    </label>
+
+                                    <label for="housing" class="housing-notes">
+                                        Detalhes da moradia (opcional)
+                                        <input
+                                            id="housing"
+                                            name="housing"
+                                            type="text"
+                                            placeholder="Ex.: 2º andar, entrada com degraus"
+                                            maxlength="120"
+                                        />
                                     </label>
                                 </div>
                             </section>
@@ -176,6 +188,68 @@
                             </div>
                         </form>
                     </div>
+
+                    <section class="plan-card" aria-labelledby="plans-title">
+                        <div class="section-heading">
+                            <div>
+                                <h2 id="plans-title">Planos de preparação</h2>
+                                <p>Escolha uma emergência para gerar e salvar suas orientações.</p>
+                            </div>
+                        </div>
+
+                        <form
+                            id="plan-form"
+                            class="fields plan-fields"
+                            action="/api/plans"
+                            method="post"
+                        >
+                            <label for="emergency">
+                                Tipo de emergência
+                                <select id="emergency" name="emergency" required disabled>
+                                    <option value="">Carregando...</option>
+                                </select>
+                            </label>
+
+                            <button id="generate-plan" type="submit" disabled>
+                                Gerar e salvar plano
+                            </button>
+                        </form>
+
+                        <p id="plan-hint" class="plan-hint">
+                            Usa os dados que você salvou no perfil.
+                        </p>
+
+                        <div class="fields plan-history">
+                            <label for="saved-plans">
+                                Planos salvos
+                                <select id="saved-plans" disabled>
+                                    <option value="">Carregando...</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <p
+                            id="plan-message"
+                            class="notice"
+                            role="status"
+                            aria-live="polite"
+                            hidden
+                        ></p>
+
+                        <button id="retry-plans" type="button" hidden>Recarregar planos</button>
+
+                        <article id="plan-result" aria-labelledby="plan-title" hidden>
+                            <h3 id="plan-title"></h3>
+                            <p id="plan-meta" class="plan-hint"></p>
+
+                            <details class="plan-inputs">
+                                <summary>Seu perfil neste plano</summary>
+                                <dl id="plan-profile"></dl>
+                            </details>
+
+                            <ol id="orientations" class="orientations"></ol>
+                        </article>
+                    </section>
                 </section>
 
                 <noscript><p>Ative o JavaScript para consultar sua conta.</p></noscript>
