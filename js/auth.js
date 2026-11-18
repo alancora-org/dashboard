@@ -58,8 +58,10 @@ form.addEventListener('submit', async (event) => {
     }
 });
 
-fetch(new URL('/api/auth/me', API_URL), { credentials: 'include', cache: 'no-store' }).then((response) => {
-    if (response.ok) {
-        window.location.replace('painel.html');
-    }
-});
+fetch(new URL('/api/auth/me', API_URL), { credentials: 'include', cache: 'no-store' }).then(
+    (response) => {
+        if (response.ok) {
+            window.location.replace('painel.html');
+        }
+    },
+);

@@ -5,7 +5,7 @@ O Caddy serve `/js/config.js` usando a variável de ambiente `API_URL`. Se ela n
 Execute nesta pasta:
 
 ```sh
-API_URL=http://localhost:8080 caddy run --config Caddyfile
+PORT=8081 API_URL=http://localhost:8080 caddy run --config Caddyfile
 ```
 
-Abra `http://localhost:8081`. Defina `PORT` para alterar a porta do dashboard.
+Abra `http://localhost:8081`.

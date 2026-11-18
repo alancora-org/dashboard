@@ -50,6 +50,39 @@ body {
     align-self: center;
 }
 
+.workspace-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+}
+
+.workspace-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.65rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+}
+
+.workspace-nav a:hover {
+    background: var(--surface);
+    color: var(--text);
+}
+
+.workspace-nav a[aria-current='page'] {
+    border-color: var(--panel-line);
+    background: var(--panel);
+    color: var(--primary);
+}
+
 .header-actions {
     gap: 2rem;
     font-size: 0.875rem;
@@ -125,19 +158,14 @@ body {
     margin: 1rem 0 0;
 }
 
-.account-layout {
+.home-layout {
     display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr);
-    align-items: start;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
     gap: 1.75rem;
 }
 
-.profile {
-    display: grid;
-    gap: 1.5rem;
-}
-
 .profile-card,
+.overview-card,
 .details-card,
 .plan-card {
     min-width: 0;
@@ -146,8 +174,44 @@ body {
     background: var(--panel);
 }
 
-.profile-card {
+.profile-card,
+.overview-card {
     padding: 1.75rem;
+}
+
+.account-page {
+    max-width: 720px;
+}
+
+.overview-card .intro {
+    margin: 0.75rem 0 1.5rem;
+}
+
+.home-links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--panel-line);
+    text-decoration: none;
+}
+
+.home-links strong {
+    display: block;
+    font-weight: 600;
+}
+
+.home-links strong + span {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+.home-links a > span:last-child {
+    color: var(--primary);
+    font-size: 1.5rem;
 }
 
 .section-heading {
@@ -182,23 +246,23 @@ body {
     font-size: 0.9375rem;
 }
 
-.profile dl {
+.profile-card dl {
     display: grid;
     gap: 1.25rem;
     margin: 1.75rem 0 0;
 }
 
-.profile dl > div + div {
+.profile-card dl > div + div {
     padding-top: 1.25rem;
     border-top: 1px solid var(--panel-line);
 }
 
-.profile dt {
+.profile-card dt {
     color: var(--muted);
     font-size: 0.8125rem;
 }
 
-.profile dd {
+.profile-card dd {
     margin: 0.375rem 0 0;
     overflow-wrap: anywhere;
 }
@@ -429,7 +493,6 @@ body {
 }
 
 .plan-card {
-    margin-top: 1.75rem;
     padding: 2rem;
 }
 
@@ -539,11 +602,12 @@ body {
         width: calc(100% - 3rem);
     }
 
-    .account-layout {
+    .home-layout {
         gap: 1.25rem;
     }
 
     .profile-card,
+    .overview-card,
     .plan-card,
     .housing-section,
     .needs-section,
@@ -564,18 +628,9 @@ body {
 }
 
 @media (max-width: 900px) {
-    .account-layout {
+    .home-layout {
         grid-template-columns: minmax(0, 1fr);
         gap: 1.5rem;
-    }
-
-    .profile {
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-        gap: 1rem;
-    }
-
-    .coast-card {
-        min-height: 100%;
     }
 
     .coast-card figcaption {
@@ -606,6 +661,16 @@ body {
         display: none;
     }
 
+    .workspace-nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .workspace-nav a {
+        padding-inline: 0.5rem;
+        font-size: 0.875rem;
+    }
+
     .workspace main {
         padding-block: 2rem;
     }
@@ -614,15 +679,12 @@ body {
         margin-bottom: 1.75rem;
     }
 
-    .profile {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
     .coast-card {
         display: none;
     }
 
     .profile-card,
+    .overview-card,
     .plan-card,
     .housing-section,
     .needs-section,

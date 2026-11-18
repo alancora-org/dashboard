@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Moradia e necessidades | ÂNCORA</title>
+        <meta name="theme-color" content="#10263b" />
+
+        <link rel="stylesheet" href="css/global.css" />
+        <link rel="stylesheet" href="css/painel.css" />
+
+        <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+
+        <script src="js/config.js" defer></script>
+        <script src="js/painel.js" defer></script>
+        <script src="js/moradia.js" defer></script>
+    </head>
+
+    <body>
+        <a class="skip-link" href="#main">Ir para o conteúdo</a>
+
+        <div class="workspace">
+            <header class="workspace-header">
+                <a class="brand" href="painel.html" aria-label="ÂNCORA - início">
+                    <img src="assets/logo.svg" alt="" width="32" height="32" />
+                    <span>ÂNCORA</span>
+                </a>
+
+                <div class="header-actions">
+                    <a href="mailto:contato@alancora.org">Precisa de ajuda?</a>
+
+                    <button id="logout" type="button" hidden>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 5H5v14h4M13 8l4 4-4 4M8 12h12" />
+                        </svg>
+                        Sair
+                    </button>
+                </div>
+            </header>
+
+            <nav class="workspace-nav" aria-label="Navegação do painel">
+                <a href="painel.html">Início</a>
+                <a href="moradia.html" aria-current="page">Moradia e necessidades</a>
+                <a href="planos.html">Planos</a>
+                <a href="conta.html">Conta</a>
+            </nav>
+
+            <main id="main" tabindex="-1">
+                <p id="account-message" class="notice" role="status" aria-live="polite">
+                    Carregando sua conta...
+                </p>
+
+                <button id="retry" type="button" hidden>Tentar novamente</button>
+
+                <section id="account" class="account" aria-labelledby="welcome" hidden>
+                    <header class="welcome">
+                        <h1 id="welcome">Moradia e necessidades</h1>
+
+                        <p class="intro">
+                            Mantenha sua localização e suas necessidades de assistência atualizadas.
+                        </p>
+                    </header>
+
+                    <form
+                        id="details-form"
+                        class="details-card"
+                        action="/api/auth/details"
+                        method="post"
+                        aria-labelledby="details-title needs-title"
+                    >
+                        <section class="housing-section" aria-labelledby="details-title">
+                            <div class="section-heading">
+                                <span class="section-icon">
+                                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8" />
+                                    </svg>
+                                </span>
+                                <div>
+                                    <h2 id="details-title">Moradia e localização</h2>
+                                    <p>Conte um pouco sobre onde você mora.</p>
+                                </div>
+                            </div>
+
+                            <div class="fields">
+                                <label for="housing-type">
+                                    Tipo de moradia
+                                    <select id="housing-type" name="housingType" required disabled>
+                                        <option value="">Selecione seu tipo de moradia</option>
+                                    </select>
+                                </label>
+
+                                <label for="location">
+                                    Localização aproximada
+                                    <input
+                                        id="location"
+                                        name="location"
+                                        type="text"
+                                        placeholder="Ex.: Centro, Santos - SP"
+                                        maxlength="120"
+                                        aria-describedby="location-hint"
+                                    />
+                                    <small id="location-hint">
+                                        Só precisamos do bairro, cidade e estado. Não inclua seu
+                                        endereço completo.
+                                    </small>
+                                </label>
+
+                                <label for="housing" class="housing-notes">
+                                    Detalhes da moradia (opcional)
+                                    <input
+                                        id="housing"
+                                        name="housing"
+                                        type="text"
+                                        placeholder="Ex.: 2º andar, entrada com degraus"
+                                        maxlength="120"
+                                    />
+                                </label>
+                            </div>
+                        </section>
+
+                        <fieldset class="needs-section" aria-describedby="choices-hint">
+                            <legend id="needs-title">
+                                <span class="section-icon">
+                                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path
+                                            d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"
+                                        />
+                                    </svg>
+                                </span>
+                                Necessidades de assistência
+                            </legend>
+                            <p id="choices-hint">
+                                Selecione o que faz parte da sua rotina. Você pode marcar mais de
+                                uma opção.
+                            </p>
+                            <input type="hidden" name="needs" value="" />
+                            <div id="needs" class="choices"></div>
+                        </fieldset>
+
+                        <div class="form-footer">
+                            <div class="form-actions">
+                                <p>Você pode atualizar estes detalhes quando precisar.</p>
+                                <button type="submit">Salvar detalhes</button>
+                            </div>
+                            <p
+                                id="details-message"
+                                class="notice"
+                                role="status"
+                                aria-live="polite"
+                                tabindex="-1"
+                                hidden
+                            ></p>
+                        </div>
+                    </form>
+                </section>
+
+                <noscript>
+                    <p>Ative o JavaScript para consultar sua conta.</p>
+                </noscript>
+            </main>
+
+            <footer class="panel-footer">
+                <a href="https://alancora.org">Conheça o projeto</a>
+                <a href="mailto:contato@alancora.org">Precisa de ajuda? contato@alancora.org</a>
+            </footer>
+        </div>
+    </body>
+</html>
