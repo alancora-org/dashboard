@@ -242,6 +242,28 @@
                             <h3 id="plan-title"></h3>
                             <p id="plan-meta" class="plan-hint"></p>
 
+                            <form
+                                id="edit-plan-form"
+                                class="fields plan-fields"
+                                aria-describedby="edit-plan-hint"
+                            >
+                                <label for="plan-emergency">
+                                    Tipo de emergência deste plano
+                                    <select id="plan-emergency" name="emergency" required></select>
+                                </label>
+
+                                <div class="plan-actions">
+                                    <button id="update-plan" type="submit">Atualizar plano</button>
+                                    <button id="delete-plan" class="button-danger" type="button">
+                                        Excluir plano
+                                    </button>
+                                </div>
+                            </form>
+
+                            <p id="edit-plan-hint" class="plan-hint">
+                                Substitui as orientações deste plano usando seu perfil salvo.
+                            </p>
+
                             <details class="plan-inputs">
                                 <summary>Seu perfil neste plano</summary>
                                 <dl id="plan-profile"></dl>
